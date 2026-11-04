@@ -10,7 +10,7 @@ namespace BlackJackSpel
         public int Balance { get; set; }
         public int Bet { get; set; }
         public int RoundsPlayed { get; set; }
-        public Player(string name, int balance)
+        public Player(string name)
         {
             Name = name;
             Balance = 100;
