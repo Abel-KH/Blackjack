@@ -5,6 +5,22 @@ using System.Text.Json;
 
 namespace BlackJackSpel
 {
+    public class Result
+    {
+        public string Name { get; set; }
+        public int FinalBalance { get; set; }
+        public int RoundsPlayed { get; set; }
+        public Result()
+        {
+            Name = "";
+        }
+        public Result(string name, int finalBalance, int roundsPlayed)
+        {
+            Name = name;
+            FinalBalance = finalBalance;
+            RoundsPlayed = roundsPlayed;
+        }
+    }
     public class Highscore
     {
         private List<Result> results;
