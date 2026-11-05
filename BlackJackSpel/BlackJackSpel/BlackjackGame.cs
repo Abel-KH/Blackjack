@@ -189,5 +189,21 @@ namespace BlackJackSpel
             Console.WriteLine($"Totalt antal rundor spelade: {player.RoundsPlayed}");
             Console.WriteLine("Tack för att du spelade!");
         }
+    
+
+    public string GetPlayerName()
+        {
+            return player.Name;
+        }
+
+        public int GetBalance()
+        {
+            return player.Balance;
+        }
+
+        public int GetRoundsPlayed()
+        {
+            return player.RoundsPlayed;
+        }
     }
 }

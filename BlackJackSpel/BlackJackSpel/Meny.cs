@@ -4,14 +4,16 @@ using System;
 public class Meny
 {
     private bool programmetKor;
+    private Highscore highscore = new Highscore();
 
     public Meny()
     {
         programmetKor = true;
     }
-    private Highscore highscore;
+  
     public void Starta()
     {
+        highscore.Load();
         while (programmetKor)
         {
             VisaMeny();
@@ -103,7 +105,8 @@ public class Meny
 
     private void VisaTopplista()
     {
-      
+      highscore.Show();
+      Console.WriteLine();
         
     }
 
