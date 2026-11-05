@@ -24,20 +24,11 @@ namespace BlackJackSpel
             {
                 if (card.Value == 1) //Om kortet är ett ess
                 {
-                    score += 11; //Räkna ess som 11 poäng
                     aceCount++;
-                }
-                else if (card.Value >= 11) //Om kortet är en kung, dam eller knekt
-                {
-                    score += 10; //Räkna dessa kort som 10 poäng
-                }
-                else
-                {
-                    score += card.Value; //Lägg till kortets värde till poängen
                 }
             }
 
-            while (score > 21 && aceCount > 0)
+            while (score > 21 && aceCount > 0) //ändrar ess från 11 till 1 om poängen är över 21
             {
                 score -= 10;
                 aceCount--;
@@ -55,10 +46,9 @@ namespace BlackJackSpel
         }
         public void ShowCards() //Visar spelarens hand på konsolen
         {
-            Console.WriteLine("Din hand:");
             foreach (Card card in Cards)
             {
-                Console.WriteLine(card.Value + "-" + card.Suit);
+                Console.WriteLine(card.ToString());
             }
             Console.WriteLine("Poäng: " + GetScore());
         }
