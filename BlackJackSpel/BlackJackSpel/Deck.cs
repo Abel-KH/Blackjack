@@ -10,7 +10,15 @@ namespace BlackJackSpel
 
         public Deck()
         {
+            ResetDeck();
+        }
+
+        private void ResetDeck()
+        {
+            cards.Clear();
+
             string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
             foreach (string suit in suits)
             {
                 for (int i = 1; i <= 13; i++)
@@ -19,18 +27,39 @@ namespace BlackJackSpel
                 }
 
             }
+
+            Shuffle();
+
         }
 
-        //Drar ett slumpmässigt kort
-        public Card DrawCard()
+        //Blandar kortleken
+        public void Shuffle()
         {
-            if (cards.Count == 0)
-                return null;
             Random random = new Random();
 
-            int index = random.Next(cards.Count);
+            for (int i = cards.Count - 1; i > 0; i--)
+            {
+                int j = random.Next(i + 1);
+
+                Card temp = cards[i];
+                cards[i] = cards[j];
+                cards[j] = temp;
+            }
+        }
+        //Drar ett kort
+        public Card DrawCard()
+        {
+            if (cards.Count < 15)
+            {
+                ResetDeck();
+            }
+
+
+            int index = cards.Count - 1;
+
             Card drawnCard = cards[index];
             cards.RemoveAt(index);
+
             return drawnCard;
         }
     }
