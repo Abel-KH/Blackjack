@@ -105,13 +105,9 @@ public class Meny
 
     private void VisaTopplista()
     {
-<<<<<<< Updated upstream
-        highscore.Show();
-        Console.WriteLine();
-=======
-      
+      highscore.Show();
+      Console.WriteLine();
         
->>>>>>> Stashed changes
     }
 
     private void VisaRegler()
