@@ -103,8 +103,8 @@ public class Meny
 
     private void VisaTopplista()
     {
-        highscore.Show();
-        Console.WriteLine();
+      
+        
     }
 
     private void VisaRegler()
