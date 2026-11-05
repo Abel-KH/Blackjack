@@ -24,7 +24,7 @@ public class Meny
 
     private void VisaMeny()
     {
-        Console.WriteLine("=== Blackjack ===");
+        Console.WriteLine("========= Blackjack =========");
         Console.WriteLine("1. Play  2. Highscore  3. Rules  4. Exit");
         Console.Write("Choice: ");
     }
