@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackJackSpel;
+using System;
 
 public class Meny
 {
@@ -8,7 +9,7 @@ public class Meny
     {
         programmetKor = true;
     }
-
+    private Highscore highscore;
     public void Starta()
     {
         while (programmetKor)
@@ -22,8 +23,8 @@ public class Meny
     private void VisaMeny()
     {
         Console.WriteLine("=== Blackjack ===");
-        Console.WriteLine("1. Spela  2. Topplista  3. Regler  4. Avsluta");
-        Console.Write("Val: ");
+        Console.WriteLine("1. Play  2. Highscore  3. Rules  4. Exit");
+        Console.Write("Choice: ");
     }
 
     private int LasMenyval()
@@ -39,7 +40,7 @@ public class Meny
             }
         }
 
-        Console.WriteLine("Ogiltigt val. Skriv en siffra mellan 1 och 4.");
+        Console.WriteLine("Invalid choice. Please enter a number between 1 and 4.");
         Console.WriteLine();
         return 0;
     }
@@ -61,37 +62,30 @@ public class Meny
                 AvslutaProgram();
                 break;
             default:
-                
+
                 break;
         }
     }
+
 
     private void StartaSpel()
     {
         string namn = LasNamn();
 
-  
+        BlackjackGame game = new BlackjackGame(namn);
+        game.StartGame();
 
-        Console.WriteLine();
-        Console.WriteLine("Spelet är inte inkopplat ännu.");
-        Console.WriteLine("Den som gör spellogiken lägger sitt anrop här i StartaSpel().");
-        Console.WriteLine();
-
-        int slutsaldo = 100;
-        int antalRundor = 0;
-
-      
-
-        Console.WriteLine("Resultatet skulle sparas här: " + namn + ", " + slutsaldo + " kr, " + antalRundor + " rundor.");
-        Console.WriteLine("Du kommer tillbaka till menyn.");
-        Console.WriteLine();
+        if (game.GetRoundsPlayed() > 0)
+        {
+            highscore.Add(game.GetPlayerName(), game.GetBalance(), game.GetRoundsPlayed());
+        }
     }
 
     private string LasNamn()
     {
         while (true)
         {
-            Console.Write("Ditt namn: ");
+            Console.Write("Your name: ");
             string namn = Console.ReadLine();
 
             if (namn != null)
@@ -103,36 +97,33 @@ public class Meny
                 }
             }
 
-            Console.WriteLine("Du måste skriva ett namn.");
+            Console.WriteLine("You must enter a name.");
         }
     }
 
     private void VisaTopplista()
     {
-      
-        Console.WriteLine();
-        Console.WriteLine("Topplistan är inte inkopplad ännu.");
-        Console.WriteLine("Den som gör JSON/topplista lägger sitt anrop här i VisaTopplista().");
+        highscore.Show();
         Console.WriteLine();
     }
 
     private void VisaRegler()
     {
         Console.WriteLine();
-        Console.WriteLine("Regler");
-        Console.WriteLine("Kom närmare 21 än dealern utan att gå över 21.");
-        Console.WriteLine("Kort 2-10 är värda sin siffra. Knekt, dam och kung är värda 10.");
-        Console.WriteLine("Ess är värt 11 eller 1, det som är bäst för handen.");
-        Console.WriteLine("Blackjack (ess + 10 på två kort) ger 1,5 gånger insatsen, avrundat nedåt.");
-        Console.WriteLine("Dealern stannar på 17 eller mer.");
-        Console.WriteLine("Du börjar med 100 kr. Minsta insats är 1 kr.");
-        Console.WriteLine("Dubbla, dela och försäkring ingår inte.");
+        Console.WriteLine("Rules");
+        Console.WriteLine("Get closer to 21 than the dealer without going over 21.");
+        Console.WriteLine("Cards 2-10 are worth their face value. Jack, queen and king are worth 10.");
+        Console.WriteLine("Ace is worth 11 or 1, whichever is better for the hand.");
+        Console.WriteLine("Blackjack (ace + 10 on two cards) gives 1.5 times the bet, rounded down.");
+        Console.WriteLine("The dealer stands on 17 or higher.");
+        Console.WriteLine("You start with 100 kr. The minimum bet is 1 kr.");
+        Console.WriteLine("Doubling, splitting and insurance are not included.");
         Console.WriteLine();
     }
 
     private void AvslutaProgram()
     {
         programmetKor = false;
-        Console.WriteLine("Tack för att du spelade!");
+        Console.WriteLine("Thank you for playing!");
     }
 }
