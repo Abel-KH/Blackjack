@@ -13,7 +13,7 @@ namespace BlackJackSpel
             string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
             foreach (string suit in suits)
             {
-                for (int i = 0; i < 13; i++)
+                for (int i = 1; i <= 13; i++)
                 {
                     cards.Add(new Card(suit, i));
                 }

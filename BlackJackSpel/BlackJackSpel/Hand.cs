@@ -7,55 +7,64 @@ namespace BlackJackSpel
 {
     internal class Hand
     {
-        //public List<Card> Cards { get; set; } //Antar att vi använder en Card-klass som representerar korten i spelet
-        //public Hand()
-        //{
-        //    Cards = new List<Card>();
-        //}
-        //public void AddCard(Card card) //Lägger till ett kort till spelarens hand
-        //{
-        //    Cards.Add(card);
-        //}
-        //public int GetScore() //Beräknar spelarens poäng baserat på korten i handen
-        //{
-        //    int score = 0;
-        //    int aceCount = 0;
-        //    foreach (Card card in Cards)
-        //    {
-        //        score += card.GetValue();
-        //        if (card.Rank == "Ace")
-        //        {
-        //            aceCount++;
-        //        }
-        //    }
-        //    while (score > 21 && aceCount > 0)
-        //    {
-        //        score -= 10;
-        //        aceCount--;
-        //    }
-        //    return score;
+        public List<Card> Cards { get; set; } //Antar att vi använder en Card-klass som representerar korten i spelet
+        public Hand()
+        {
+            Cards = new List<Card>();
+        }
+        public void AddCard(Card card) //Lägger till ett kort till spelarens hand
+        {
+            Cards.Add(card);
+        }
+        public int GetScore() //Beräknar spelarens poäng baserat på korten i handen
+        {
+            int score = 0;
+            int aceCount = 0;
+            foreach (Card card in Cards)
+            {
+                if (card.Value == 1) //Om kortet är ett ess
+                {
+                    score += 11; //Räkna ess som 11 poäng
+                    aceCount++;
+                }
+                else if (card.Value >= 11) //Om kortet är en kung, dam eller knekt
+                {
+                    score += 10; //Räkna dessa kort som 10 poäng
+                }
+                else
+                {
+                    score += card.Value; //Lägg till kortets värde till poängen
+                }
+            }
 
-        //}
-        //public bool HasBlackjack() //Kontrollerar om spelaren har blackjack (ess + 10 på två kort)
-        //{
-        //    return Cards.Count == 2 && GetScore() == 21;
-        //}
-        //public bool IsBust() //Kontrollerar om spelaren har gått över 21
-        //{
-        //    return GetScore() > 21;
-        //}
-        //public void ShowCards() //Visar spelarens hand på konsolen
-        //{
-        //    Console.WriteLine("Din hand:");
-        //    foreach (Card card in Cards)
-        //    {
-        //        Console.WriteLine(card.ToString());
-        //    }
-        //    Console.WriteLine("Poäng: " + GetScore());
-        //}
-        //public void ClearHand() //Tömmer spelarens hand på kort
-        //{
-        //    Cards.Clear();
-        //}
+            while (score > 21 && aceCount > 0)
+            {
+                score -= 10;
+                aceCount--;
+            }
+            return score;
+        }
+
+        public bool HasBlackjack() //Kontrollerar om spelaren har blackjack (ess + 10 på två kort)
+        {
+            return Cards.Count == 2 && GetScore() == 21;
+        }
+        public bool IsBust() //Kontrollerar om spelaren har gått över 21
+        {
+            return GetScore() > 21;
+        }
+        public void ShowCards() //Visar spelarens hand på konsolen
+        {
+            Console.WriteLine("Din hand:");
+            foreach (Card card in Cards)
+            {
+                Console.WriteLine(card.Value + "-" + card.Suit);
+            }
+            Console.WriteLine("Poäng: " + GetScore());
+        }
+        public void ClearHand() //Tömmer spelarens hand på kort
+        {
+            Cards.Clear();
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BlackJackSpel
+﻿namespace BlackJackSpel
 {
     internal class Player
     {
@@ -10,12 +6,14 @@ namespace BlackJackSpel
         public int Balance { get; set; }
         public int Bet { get; set; }
         public int RoundsPlayed { get; set; }
+        public Hand Hand { get; set; }
         public Player(string name)
         {
             Name = name;
             Balance = 100;
             Bet = 0;
             RoundsPlayed = 0;
+            Hand = new Hand();
         }
         public bool PlaceBet(int bet) //Kontrolerar och placerar spelarens insats
         {
@@ -50,6 +48,30 @@ namespace BlackJackSpel
         public void PlayRound() //Uppdaterar antalet rundor spelade
         {
             RoundsPlayed++;
+        }
+        public void AddCard(Card card) //Lägger till ett kort i spelarens hand
+        {
+            Hand.AddCard(card);
+        }
+        public int GetScore() //Beräknar spelarens poäng baserat på korten i handen
+        {
+            return Hand.GetScore();
+        }
+        public bool HasBlackjack() //Kontrollerar om spelaren har blackjack (ess + 10 på två kort)
+        {
+            return Hand.HasBlackjack();
+        }
+        public bool IsBust() //Kontrollerar om spelaren har gått över 21
+        {
+            return Hand.IsBust();
+        }
+        public void ShowCards() //Visar spelarens hand på konsolen
+        {
+            Hand.ShowCards();
+        }
+        public void ClearHand() //Tömmer spelarens hand på kort
+        {
+            Hand.ClearHand();
         }
     }
 }

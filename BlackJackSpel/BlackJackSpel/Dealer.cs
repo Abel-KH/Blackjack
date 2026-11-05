@@ -1,46 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BlackJackSpel
+﻿namespace BlackJackSpel
 {
     internal class Dealer
     {
-        //public List<Card> Cards { get; set; } //Antar att vi använder en Card-klass som representerar korten i spelet
-        //public Dealer()
-        //{
-        //    Cards = new List<Card>();
-        //}
-        //public void AddCard(Card card) //Lägger till ett kort till dealerns hand
-        //{
-        //    Cards.Add(card);
-        //}
-        //public int GetScore() //Beräknar dealerns poäng baserat på korten i handen
-        //{
-        //    int score = 0;
-        //    int aceCount = 0;
-        //    foreach (Card card in Cards)
-        //    {
-        //        score += card.GetValue();
-        //        if (card.Rank == "Ace")
-        //        {
-        //            aceCount++;
-        //        }
-        //    }
-        //    while (score > 21 && aceCount > 0)
-        //    {
-        //        score -= 10;
-        //        aceCount--;
-        //    }
-        //    return score;
-        //}
-        //public bool ShouldDraw() //Kontrollerar om dealern ska dra ett kort baserat på poängen
-        //{
-        //    return GetScore() < 17;
-        //}
-        //public void ClearHand() //Tömmer dealerns hand på kort
-        //{
-        //    Cards.Clear();
-        //}
+        public Hand hand { get; set; } // En Hand-klass som representerar dealerns hand
+        public Dealer()
+        {
+            hand = new Hand();
+        }
+        public void AddCard(Card card) //Lägger till ett kort till dealerns hand
+        {
+            hand.AddCard(card);
+        }
+        public int GetScore() //Beräknar dealerns poäng baserat på korten i handen
+        {
+
+            return hand.GetScore();
+        }
+        public bool ShouldDraw() //Kontrollerar om dealern ska dra ett kort baserat på poängen
+        {
+            return hand.GetScore() < 17;
+        }
+        public bool HasBlackjack() //Kontrollerar om dealern har blackjack (ess + 10 på två kort)
+        {
+            return hand.HasBlackjack();
+        }
+        public bool IsBust() //Kontrollerar om dealern har gått över 21
+        {
+            return hand.IsBust();
+        }
+        public void ShowCards() //Visar dealerns hand på konsolen
+        {
+            hand.ShowCards();
+        }
+        public void ClearHand() //Tömmer dealerns hand på kort
+        {
+            hand.ClearHand();
+        }
     }
 }
