@@ -7,7 +7,7 @@ namespace BlackJackSpel
 {
     internal class Hand
     {
-        public List<Card> Cards { get; set; } //Antar att vi använder en Card-klass som representerar korten i spelet
+        public List<Card> Cards { get; set; } //Card-klass som representerar korten i spelet
         public Hand()
         {
             Cards = new List<Card>();

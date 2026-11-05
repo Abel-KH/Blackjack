@@ -1,4 +1,5 @@
 ﻿using System;
+using BlackJackSpel;
 
 public class Meny
 {
@@ -70,21 +71,8 @@ public class Meny
     {
         string namn = LasNamn();
 
-  
-
-        Console.WriteLine();
-        Console.WriteLine("Spelet är inte inkopplat ännu.");
-        Console.WriteLine("Den som gör spellogiken lägger sitt anrop här i StartaSpel().");
-        Console.WriteLine();
-
-        int slutsaldo = 100;
-        int antalRundor = 0;
-
-      
-
-        Console.WriteLine("Resultatet skulle sparas här: " + namn + ", " + slutsaldo + " kr, " + antalRundor + " rundor.");
-        Console.WriteLine("Du kommer tillbaka till menyn.");
-        Console.WriteLine();
+        BlackjackGame game = new BlackjackGame(namn);
+        game.StartGame();
     }
 
     private string LasNamn()
